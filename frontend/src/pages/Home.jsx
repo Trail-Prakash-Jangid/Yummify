@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import chef from "../images/chef logo design.jpg";
+import chef from "../images/chef.jpg";
 import Slider from "react-slick";
 import axios from "axios";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { NextArrow, PrevArrow } from "../components/CustomArrows";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { BACKEND_URL } from '../utils/utils.js';
 
 
