@@ -1,0 +1,21 @@
+/* styles.css */
+.custom-background {
+  background-image: url('../yummify.jpg'), radial-gradient(circle, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+
+/* Make adjustments for smaller screen sizes */
+@media (max-width: 768px) {
+  .custom-background {
+    background-image: url('../yummify.jpg'), radial-gradient(circle, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  }
+}
+
+/* For very small screens (like phones in portrait) */
+@media (max-width: 480px) {
+  .custom-background {
+    background-image: url('../yummify.jpg'), radial-gradient(circle, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0) 100%);
+  }
+}
