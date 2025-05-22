@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { BACKEND_URL } from '../utils/utils.js';
 import Footer from '../components/Footer.jsx';
 import Skeleton from '../components/Skeleton.jsx';
-import Blogsskeli from '../components/blogsskeli.jsx';
+import Blogsskeli from '../components/Blogsskeli.jsx';
 
 const Home = () => {
     const [recipes, setRecipes] = useState([]);
