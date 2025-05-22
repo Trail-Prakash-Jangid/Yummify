@@ -5,7 +5,7 @@ import userRoute from "./routes/user.route.js";
 import recipeRoute from "./routes/recipe.route.js";
 import { v2 as cloudinary } from "cloudinary";
 import cors from "cors";
-import adminRoute from "./routes/category.route.js"
+import adminRoute from "./routes/other.route.js"
 
 const app = express();
 dotenv.config();

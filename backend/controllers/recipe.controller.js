@@ -177,19 +177,6 @@ export const getRecipes = async (req, res) => {
     }
 };
 
-export const getPopularRecipes = async (req, res) => {
-    try {
-        const popularRecipes = await Recipe.find({ views: { $gt: 1 } }).sort({ views: -1 });
-
-        return res.status(200).json({
-            message: "Popular recipes fetched successfully",
-            popularRecipes
-        });
-    } catch (error) {
-        console.log("Error fetching popular recipes:", error);
-        return res.status(500).json({ errors: "Server error fetching popular recipes" });
-    }
-};
 
 export const likeRecipe = async (req, res) => {
     const { recipeId } = req.params;
