@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom"
 import { toast } from "react-hot-toast"
 import Header from '../components/Header';
-import { BACKEND_URL } from '../utils/utils';
+import { BACKEND_URL } from '../utils/utils.js';
 
 const Signup = () => {
     const [isOpen, setIsOpen] = useState(false);

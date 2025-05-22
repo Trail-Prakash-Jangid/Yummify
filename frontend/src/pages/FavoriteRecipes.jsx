@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { Heart, Star, Plus } from "lucide-react";
 import toast from 'react-hot-toast';
 import { BACKEND_URL } from '../utils/utils.js';
+import Footer from '../components/Footer.jsx';
 
 
 
@@ -194,7 +195,7 @@ const FavoriteRecipes = () => {
       </section>
 
 
-
+<Footer/>
     </div>
   )
 }

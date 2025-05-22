@@ -4,6 +4,7 @@ import { Link, useLocation, useParams } from "react-router-dom"
 import Header from '../components/Header';
 import toast from 'react-hot-toast';
 import { BACKEND_URL } from '../utils/utils.js';
+import Footer from '../components/Footer.jsx';
 
 const AllRecipes = () => {
     const [recipes, setRecipes] = useState([])
@@ -74,7 +75,7 @@ const AllRecipes = () => {
                                         <img
                                             src={recipe.image}
                                             alt="Delicious Dish"
-                                            className="w-full h-30 object-cover"
+                                            className="w-full h-50 object-cover"
                                         />
 
                                         <div className="p-3">
@@ -100,7 +101,7 @@ const AllRecipes = () => {
             </div>
 
 
-
+<Footer/>
         </div>
 
 

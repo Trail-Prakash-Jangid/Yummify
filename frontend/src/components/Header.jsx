@@ -6,7 +6,7 @@ const Header = () => {
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
     const categories = ["Dessert", "Juices", "Breakfast", "Healthy", "Snacks"]
-    const navLinks = ["Favorites", "categories", "Blogs", "Profile"];
+    const navLinks = ["Home", "Favorites", "Categories", "Profile"];
     return (
         <div>
             <header className='flex items-center justify-between bg-stone-50 py-4 px-4 sm:px-6 md:px-10 shadow-sm relative'>
@@ -16,7 +16,6 @@ const Header = () => {
                     <a href='/' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Home</a>
                     <a href='/favorites' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Favorites</a>
                     <a href='/recipe/allrecipes' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Categories</a>
-                    <a href='#blogs' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Blogs</a>
                     <a href='/profile' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Profile</a>
                 </ul>
 
@@ -30,14 +29,14 @@ const Header = () => {
                     <div className='absolute w-full bg-white px-6 py-4 md:hidden top-full left-0 z-50'>
                         <ul className='flex flex-col space-y-4'>
                             {navLinks.map((link) => {
-                                if (link === "categories") {
+                                if (link === "Categories") {
                                     return (
                                         <li key={link} className='relative'>
                                             <button
                                                 onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
                                                 className='font-semibold hover:text-orange-500 w-full text-left'
                                             >
-                                                Categories <i class="fa-solid fa-caret-down"></i>
+                                                Categories <i className="fa-solid fa-caret-down"></i>
                                             </button>
 
                                             {showCategoryDropdown && (
@@ -55,6 +54,16 @@ const Header = () => {
                                         </li>
                                     );
                                 }
+
+                              if(link === "Home"){
+                                  return(
+                                     <li key={link}>
+                                        <a href="/" className='hover:text-orange-500 font-semibold'>
+                                            Home
+                                        </a>
+                                    </li>
+                                  )
+                              }
 
                                 return (
                                     <li key={link}>

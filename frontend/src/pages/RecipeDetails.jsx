@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import toast from 'react-hot-toast';
-import { BACKEND_URL } from '../utils/utils';
+import { BACKEND_URL } from '../utils/utils.js';
 
 
 

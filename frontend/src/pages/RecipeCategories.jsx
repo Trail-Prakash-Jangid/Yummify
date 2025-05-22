@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header';
-import { BACKEND_URL } from '../utils/utils';
+import { BACKEND_URL } from '../utils/utils.js';
 
 const RecipeCategories = () => {
   const [recipes, setRecipes] = useState([])
@@ -16,7 +16,7 @@ const RecipeCategories = () => {
   useEffect(() => {
     const getRecipes = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}recipe/category/${categoryName}`, {
+        const response = await axios.get(`${BACKEND_URL}/recipe/category/${categoryName}`, {
           withCredentials: true
         })
         console.log(response.data)
