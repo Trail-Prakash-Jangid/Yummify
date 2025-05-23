@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from "react-router-dom"
 import Header from '../components/Header';
-import toast from 'react-hot-toast';
 import { BACKEND_URL } from '../utils/utils.js';
 import Footer from '../components/Footer.jsx';
 
@@ -10,6 +9,7 @@ const AllRecipes = () => {
     const [recipes, setRecipes] = useState([])
     const { categoryName } = useParams()
     const location = useLocation()
+    const [isFetched, setIsFetched]= useState(false)
 
     const isAllSelected = location.pathname === "/recipe/allrecipes"
 
@@ -26,6 +26,7 @@ const AllRecipes = () => {
                 })
                 setRecipes(response.data.recipes)
                 console.log(response.data.recipes)
+                setIsFetched(true)
             } catch (error) {
                 console.log("Error in fetching recipes", error)
             }
@@ -64,8 +65,8 @@ const AllRecipes = () => {
 
                 {/* Main Content Wrapper */}
 
-                {recipes.length > 0 ? (
-                    <div className="flex-1 p-6  overflow-y-auto">
+                   {isFetched ? (
+                     <div className="flex-1 p-6  overflow-y-auto">
                         {/* Recipe Card */}
                         <h1 className=' font-bold text-center text-2xl mb-5 '>All Recipes</h1>
                         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 '>
@@ -93,11 +94,14 @@ const AllRecipes = () => {
 
                         </div>
                     </div>
-                ) : (
-                    <div className='flex justify-between mx-auto min-h-screen mt-40'>
-                        <p className='text-sm font-semibold text-red-400 '>Recipes are not available of this category</p>
+                   ):(
+                    <div className='flex mx-auto mt-60 sm:mt-50'>
+                        <p className='text-red-400 text-lg font-semibold '>Loading...</p>
                     </div>
-                )}
+                   )
+    
+                   }
+
             </div>
 
 

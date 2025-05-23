@@ -7,12 +7,14 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import toast from 'react-hot-toast';
 import { BACKEND_URL } from '../utils/utils.js';
+import RecipeSkeleton from '../components/RecipeSkeleton.jsx';
 
 
 
 const RecipeDetails = () => {
   const { recipeId } = useParams()
   const [recipe, setRecipe] = useState([])
+  const [isFetched, setIsFetched] = useState(false)
 
 
   const user = JSON.parse(localStorage.getItem("User"))
@@ -31,6 +33,7 @@ const RecipeDetails = () => {
         })
         setRecipe(response.data.recipe)
         console.log(response.data.recipe)
+        setIsFetched(true)
       } catch (error) {
         console.log(error)
       }
@@ -94,64 +97,70 @@ const RecipeDetails = () => {
         <section className='w-full flex justify-center'>
           <div className='w-full max-w-screen-xl mx-auto flex flex-col items-center'>
 
-            <h1 className='text-2xl font-bold text-[#3a3535] py-10 text-center'>
-              {maintitle} <span className='text-[#eba51e]'>{lastword}</span>
-            </h1>
+           {isFetched ? (
+             <div>
+              <h1 className='text-2xl font-bold text-[#3a3535] py-10 text-center'>
+                {maintitle} <span className='text-[#eba51e]'>{lastword}</span>
+              </h1>
 
-            <div className='flex flex-col md:flex-row items-start justify-between gap-6 bg-[#f0f0f0] md:w-[80vw] w-full shadow-lg p-6 rounded-xl'>
-              <img
-                src={recipe.image}
-                alt="Chiz Burst Pizza"
-                className='shadow-lg w-full md:w-[50%] h-64 object-cover rounded-md'
-              />
+              <div className='flex flex-col md:flex-row items-start justify-between gap-6 bg-[#f0f0f0] md:w-[80vw] w-full shadow-lg p-6 rounded-xl'>
+                <img
+                  src={recipe.image}
+                  alt="Chiz Burst Pizza"
+                  className='shadow-lg w-full md:w-[50%] h-64 object-cover rounded-md'
+                />
 
-              <div className='text-left text-[#3a3535] flex-1 md:ml-6'>
-                <h3 className='text-2xl font-semibold mb-2'>{recipe.title}</h3>
-                <p className='text-[#eba51e]'>⭐⭐⭐⭐⭐ 500 Ratings</p>
-                <p className='mt-2 text-xl'>
-                  {recipe.description}
-                </p>
+                <div className='text-left text-[#3a3535] flex-1 md:ml-6'>
+                  <h3 className='text-2xl font-semibold mb-2'>{recipe.title}</h3>
+                  <p className='text-[#eba51e]'>⭐⭐⭐⭐⭐ 500 Ratings</p>
+                  <p className='mt-2 text-xl'>
+                    {recipe.description}
+                  </p>
 
-                {/* Cook Time and Serves */}
-                <div className='mt-6 space-y-4'>
-                  <div className='flex items-center'>
-                    <span className='mr-2 font-semibold'>Cook Time:</span> <span>{recipe.duration}</span>
+                  {/* Cook Time and Serves */}
+                  <div className='mt-6 space-y-4'>
+                    <div className='flex items-center'>
+                      <span className='mr-2 font-semibold'>Cook Time:</span> <span>{recipe.duration}</span>
+                    </div>
+                    <div className='flex items-center'>
+                      <span className='mr-2 font-semibold'>Serves:</span> <span>{recipe.serves}</span>
+                    </div>
+                    <button onClick={handleFavorite} className='bg-[#eba51e] py-2 px-5 cursor-pointer rounded-md text-white'>
+                      Add to Favorite
+                    </button>
                   </div>
-                  <div className='flex items-center'>
-                    <span className='mr-2 font-semibold'>Serves:</span> <span>{recipe.serves}</span>
-                  </div>
-                  <button onClick={handleFavorite} className='bg-[#eba51e] py-2 px-5 cursor-pointer rounded-md text-white'>
-                    Add to Favorite
-                  </button>
                 </div>
               </div>
-            </div>
 
-            {/* Ingredients and Steps */}
-            <div className='flex flex-col md:flex-row justify-between gap-6 md:w-[80vw] w-full mt-10'>
-              <div className='flex-1'>
-                <h3 className='text-[#eba51e] font-semibold text-xl mb-5'>Ingredients</h3>
-                <ul className='list-disc pl-6 space-y-2'>
-                  {recipe.ingredients?.map((item, index) => (
-                    <li key={item._id}>{item.name} of {item.quantity}</li>
-                  ))}
-                </ul>
+              {/* Ingredients and Steps */}
+              <div className='flex flex-col md:flex-row justify-between gap-6 md:w-[80vw] w-full mt-10'>
+                <div className='flex-1'>
+                  <h3 className='text-[#eba51e] font-semibold text-xl mb-5'>Ingredients</h3>
+                  <ul className='list-disc pl-6 space-y-2'>
+                    {recipe.ingredients?.map((item, index) => (
+                      <li key={item._id}>{item.name} of {item.quantity}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Divider */}
+                <div className='hidden md:block w-[2px] bg-[#eba51e]'></div>
+
+                <div className="flex-1">
+                  <h3 className="text-[#eba51e] font-semibold text-xl mb-5">Steps</h3>
+                  <ol className="list-decimal pl-6 space-y-2">
+                    {recipe.steps?.map((step, index) => (
+                      <li key={index}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+
+
               </div>
-
-              {/* Divider */}
-              <div className='hidden md:block w-[2px] bg-[#eba51e]'></div>
-
-              <div className="flex-1">
-                <h3 className="text-[#eba51e] font-semibold text-xl mb-5">Steps</h3>
-                <ol className="list-decimal pl-6 space-y-2">
-                  {recipe.steps?.map((step, index) => (
-                    <li key={index}>{step}</li>
-                  ))}
-                </ol>
-              </div>
-
-
             </div>
+           ): (
+            <RecipeSkeleton/>
+           )}
 
             {/* Comments Section */}
             <section className="w-full bg-white mt-10 px-4 sm:px-6 md:px-10 py-10">

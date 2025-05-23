@@ -9,6 +9,7 @@ import RecipeCategories from "./pages/RecipeCategories"
 import AllRecipes from "./pages/AllRecipes"
 import ProfilePage from "./pages/Profile"
 import FavoriteRecipes from "./pages/FavoriteRecipes"
+import RecipeSkeleton from "./components/RecipeSkeleton"
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
         <Route path="/recipe/allrecipes" element={<AllRecipes />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/recipeskeli" element={<RecipeSkeleton />} />
         
 
 

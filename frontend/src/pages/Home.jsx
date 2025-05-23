@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { BACKEND_URL } from '../utils/utils.js';
 import Footer from '../components/Footer.jsx';
 import Skeleton from '../components/Skeleton.jsx';
-import Blogsskeli from '../components/Blogsskeli.jsx';
+import { FeaturedBlogSkeleton, MiniBlogSkeleton } from '../components/Blogsskeli.jsx';
 
 const Home = () => {
     const [recipes, setRecipes] = useState([]);
@@ -249,36 +249,35 @@ const Home = () => {
 
                 <div className="max-w-7xl mx-auto">
                     <Slider {...settings}>
-                        {
-                            isFetched ? (
-                                recipes.map((recipe) => (
-                                    <Link key={recipe._id} to={`/recipe/${recipe._id}`}>
-                                        <div className="px-2 sm:px-3">
-                                            <div className="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col h-full">
-                                                <img
-                                                    src={recipe.image}
-                                                    alt={recipe.title}
-                                                    className="w-full h-55 sm:h-56 object-cover"
-                                                />
-                                                <div className="p-2 flex flex-col justify-between h-full">
-                                                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 text-center">
-                                                        {recipe.title}
-                                                    </h3>
-                                                    <div className="text-center">
-                                                        <button className="bg-orange-500 cursor-pointer text-white py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300">
-                                                            Get Recipe
-                                                        </button>
-                                                    </div>
+                        {isFetched ? (
+                            recipes.map((recipe) => (
+                                <Link key={recipe._id} to={`/recipe/${recipe._id}`}>
+                                    <div className="px-2 sm:px-3">
+                                        <div className="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col h-full">
+                                            <img
+                                                src={recipe.image}
+                                                alt={recipe.title}
+                                                className="w-full h-55 sm:h-56 object-cover"
+                                            />
+                                            <div className="p-2 flex flex-col justify-between h-full">
+                                                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 text-center">
+                                                    {recipe.title}
+                                                </h3>
+                                                <div className="text-center">
+                                                    <button className="bg-orange-500 cursor-pointer text-white py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300">
+                                                        Get Recipe
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
-                                ))
-                            ) : (
-                                <Skeleton />
-                            )
-                        }
+                                    </div>
+                                </Link>
+                            ))
+                        ) : (
+                            [...Array(4)].map((_, idx) => <Skeleton key={idx} />)
+                        )}
                     </Slider>
+
                 </div>
             </section>
 
@@ -316,7 +315,7 @@ const Home = () => {
                                 </div>
                             </Link>
                         ))) : (
-                            <Skeleton />
+                            [...Array(4)].map((_, idx) => <Skeleton key={idx} />)
                         )}
                     </Slider>
                 </div>
@@ -326,7 +325,7 @@ const Home = () => {
                 <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Read Latest <span className='text-orange-500'>Blogs</span></h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* Left - Featured Blog */}
-                    {featuredBlog && (
+                    {isFetched && featuredBlog ? (
                         <div key={featuredBlog._id} className="md:col-span-2 bg-white rounded-lg shadow-lg p-4">
                             <img src={featuredBlog.image} alt={featuredBlog.title} className="rounded-lg w-full h-64 object-cover object-center mb-4" />
                             <p className="text-xs text-gray-500">{featuredBlog.publishedDate} • Lorem ipsum dolor sit.</p>
@@ -334,6 +333,8 @@ const Home = () => {
                             <p className="text-gray-700 text-sm mt-2">{featuredBlog.description}</p>
                             <a href="" className="text-orange-500 mt-3 inline-block font-semibold">Read Now →</a>
                         </div>
+                    ): (
+                        <FeaturedBlogSkeleton />
                     )}
 
                     {/* Right - Mini Blogs */}
@@ -348,7 +349,7 @@ const Home = () => {
                                 </div>
                             </div>
                         ))) : (
-                            <Blogsskeli />
+                            [...Array(4)].map((_, i) => <MiniBlogSkeleton key={i} />)
                         )}
                     </div>
                 </div>

@@ -12,7 +12,7 @@ const Header = () => {
             <header className='flex items-center justify-between bg-stone-50 py-4 px-4 sm:px-6 md:px-10 shadow-sm relative'>
                 <h1 className='text-lg ml-4 md:text-2xl font-bold text-[#3a3535]'>Yummify</h1>
 
-                <ul className='hidden md:flex space-x-6 mr-4 items-center'>
+                <ul className='hidden sm:flex space-x-6 mr-4 items-center'>
                     <a href='/' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Home</a>
                     <a href='/favorites' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Favorites</a>
                     <a href='/recipe/allrecipes' className='font-semibold list-none hover:text-orange-400 cursor-pointer'>Categories</a>
