@@ -21,7 +21,7 @@ const Login = () => {
                 withCredentials: true,
                 headers: { "Content-Type": "application/json" }
             })
-            localStorage.setItem("User", JSON.stringify(response.data))
+            await localStorage.setItem("User", JSON.stringify(response.data))
             toast.success(response.data.message || "logged in successfully")
             console.log(response.data)
             navigate("/")

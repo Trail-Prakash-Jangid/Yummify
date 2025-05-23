@@ -1,14 +1,14 @@
 import React from "react"
 import { Route, Router, Routes } from "react-router-dom"
-import Signup from "./pages/Signup"
-import Login from "./pages/Login"
-import RecipeDetails from "./pages/RecipeDetails"
+import Signup from "./pages/Signup.jsx"
+import Login from "./pages/Login.jsx"
+import RecipeDetails from "./pages/RecipeDetails.jsx"
 import Home from "./pages/Home"
 import { Toaster } from "react-hot-toast"
-import RecipeCategories from "./pages/RecipeCategories"
-import AllRecipes from "./pages/AllRecipes"
-import ProfilePage from "./pages/Profile"
-import FavoriteRecipes from "./pages/FavoriteRecipes"
+import RecipeCategories from "./pages/RecipeCategories.jsx"
+import AllRecipes from "./pages/AllRecipes.jsx"
+import ProfilePage from "./pages/Profile.jsx"
+import FavoriteRecipes from "./pages/FavoriteRecipes.jsx"
 
 
 function App() {

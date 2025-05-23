@@ -7,37 +7,41 @@ import { BACKEND_URL } from '../utils/utils';
 
 const ProfilePage = () => {
     const [userInfo, setUserInfo] = useState([])
-    const [isOpen, setIsOpen] = useState(false);
-    const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
-    const navLinks = ["Home", "Favorites", "categories", "Blogs", "Profile"];
-    const categories = ["Dessert", "Juices", "Breakfast", "Healthy", "Snacks"]
     const userName = userInfo.userName
 
-    const naviagte = useNavigate()
+    const navigate = useNavigate()
 
     const user = JSON.parse(localStorage.getItem("User"))
     const token = user?.token
 
     useEffect(() => {
         if (!token) {
-            console.log("Logged in to continue")
-            naviagte("/login")
+            console.log("Logged in to continue");
+            navigate("/login");
         }
+    }, [token]);
 
-    }, [])
 
     useEffect(() => {
+        if (!token) return;
+
         const getUserInfo = async () => {
-            const response = await axios.get(`${BACKEND_URL}/user/userInfo`, {
-                withCredentials: true,
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            setUserInfo(response.data.user)
-            console.log(response.data)
-        }
-        getUserInfo()
-    }, [])
+            try {
+                const response = await axios.get(`${BACKEND_URL}/user/userInfo`, {
+                    withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setUserInfo(response.data.user);
+            } catch (error) {
+                console.error("Error fetching user info:", error);
+                navigate("/login");
+            }
+        };
+
+        getUserInfo();
+    }, [token, navigate]);
+
 
 
     const handleLogout = async () => {
@@ -49,7 +53,7 @@ const ProfilePage = () => {
         localStorage.removeItem("User")
         toast.success(response.data.message || "Logged out successfully")
         console.log("logged out successfully")
-        naviagte("/")
+        navigate("/")
     }
 
 
