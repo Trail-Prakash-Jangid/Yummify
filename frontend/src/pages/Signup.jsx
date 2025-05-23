@@ -6,11 +6,9 @@ import Header from '../components/Header';
 import { BACKEND_URL } from '../utils/utils.js';
 
 const Signup = () => {
-    const [isOpen, setIsOpen] = useState(false);
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
 
     const navigate = useNavigate()
 

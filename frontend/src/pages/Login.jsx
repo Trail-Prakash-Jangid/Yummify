@@ -8,7 +8,6 @@ import { BACKEND_URL } from '../utils/utils.js';
 const Login = () => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
 
     const navigate = useNavigate()
 
@@ -29,7 +28,6 @@ const Login = () => {
         } catch (error) {
             if (error.response) {
                 const message = error.response.data.message || error.response.data.errors
-                setErrorMessage(message)
                 toast.error(message || "Error in logging you")
             }
         }
