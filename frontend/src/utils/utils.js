@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://yummify-1.onrender.com"
+export const BACKEND_URL = "https://yummify-1.onrender.com/api/v1"
