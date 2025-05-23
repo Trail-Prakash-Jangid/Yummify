@@ -46,6 +46,7 @@ const Home = () => {
 
                 console.log(response.data.categories)
                 setCategories(response.data.categories)
+                setIsFetched(true)
             } catch (error) {
 
             }
@@ -59,6 +60,7 @@ const Home = () => {
 
                 console.log(response.data.blogs)
                 setBlogs(response.data.blogs)
+                setIsFetched(true)
             } catch (error) {
 
             }
@@ -169,6 +171,16 @@ const Home = () => {
                                         <li key={link}>
                                             <a href="/favorites" className='hover:text-orange-500 font-semibold'>
                                                 Favorites
+                                            </a>
+                                        </li>
+                                    )
+                                }
+
+                                if (link === "Profile") {
+                                    return (
+                                        <li key={link}>
+                                            <a href="/profile" className='hover:text-orange-500 font-semibold'>
+                                                Profile
                                             </a>
                                         </li>
                                     )
@@ -333,7 +345,7 @@ const Home = () => {
                             <p className="text-gray-700 text-sm mt-2">{featuredBlog.description}</p>
                             <a href="" className="text-orange-500 mt-3 inline-block font-semibold">Read Now →</a>
                         </div>
-                    ): (
+                    ) : (
                         <FeaturedBlogSkeleton />
                     )}
 
